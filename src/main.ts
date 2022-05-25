@@ -1,35 +1,27 @@
-import { RenderCallback } from './../node_modules/express-handlebars/types/index.d';
-import fs from 'fs';
-import path from 'path';
-import express, { Request, Response } from 'express';
+import express from 'express';
 import cors from 'cors';
-import { engine } from 'express-handlebars';
-
+import mongoose from 'mongoose';
+import { students_info } from './input';
+import dotenv from 'dotenv';
 import routes from './routes';
 
+dotenv.config();
 const app = express();
 
-app.set('views', path.join(__dirname, 'views/'));
-app.engine('handlebars', engine());
-app.set('view engine', 'handlebars');
-
 app.use(express.json());
-// app.use(cors());
+// app.use(express.urlencoded());
+app.use(cors());
 app.use('/api/auth', routes.authRoute);
 
-app.get('/', (req: Request, res: Response) => {
-	res.render('home');
+app.get('/', (req, res) => {
+	res.send('test');
 });
 
-const input = fs
-	.readFileSync(path.join(__dirname, './test.txt'), {
-		encoding: 'utf-8',
-	})
-	.split('\n')
-	.map((line) => line);
+mongoose.connect(process.env.DB || '', () => {
+	console.log(`connected to db`);
+});
 
-const students_info = input.map((student) => student.split(' '));
-console.log(students_info);
-
-const PORT = 8001 || process.env.PORT;
-app.listen(PORT);
+const PORT = process.env.PORT || 8001;
+app.listen(PORT, () => {
+	console.log(`server running on ${PORT}`);
+});
