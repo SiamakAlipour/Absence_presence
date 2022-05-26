@@ -4,3 +4,13 @@
 	flex-direction: column;
 	justify-content: center;
 }
+
+.login > form {
+	width: 500px !important;
+}
+
+@media screen and (max-width: 675px) {
+	.login > form {
+		width: 95vw !important;
+	}
+}
