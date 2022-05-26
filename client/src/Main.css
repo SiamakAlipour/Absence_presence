@@ -1,0 +1,24 @@
+.main {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	justify-content: center;
+}
+.main .main__users-list {
+	width: 50%;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+@media screen and (max-width: 650px) {
+	.main .main__users-list {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
+}
+@media screen and (max-width: 960px) {
+	.main .main__users-list {
+		width: 100%;
+	}
+}
