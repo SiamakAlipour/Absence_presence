@@ -8,7 +8,7 @@ route.get('/', async (req: Request, res: Response) => {
 });
 
 route.post('/login', async (req: Request, res: Response) => {
-	const { username, password } = req.body;
+	const { username, password, status = false } = req.body;
 	const userExist = await User.findOne({ username: username.toLowerCase() });
 	if (userExist) {
 		return res.status(400).send({
@@ -22,7 +22,9 @@ route.post('/login', async (req: Request, res: Response) => {
 	});
 	try {
 		await newUser.save();
-		res.status(200).send({ msg: 'User Created', username: newUser.username });
+		res
+			.status(200)
+			.send({ msg: 'User Created', username: newUser.username, status });
 	} catch (error) {
 		res.status(400).send({ error });
 	}

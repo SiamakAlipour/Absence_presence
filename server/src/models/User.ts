@@ -9,6 +9,10 @@ const UserSchema: Schema = new Schema({
 		type: String,
 		required: true,
 	},
+	status: {
+		type: String,
+		required: true,
+	},
 });
 
 export default mongoose.model('users', UserSchema);
