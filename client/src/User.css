@@ -1,9 +1,0 @@
-.user {
-	display: flex;
-	align-items: center;
-	margin: 20px;
-}
-.user > p {
-	font-size: 20px;
-	margin: 0px 10px;
-}
