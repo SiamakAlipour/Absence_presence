@@ -5,21 +5,3 @@
 	display: flex;
 	justify-content: center;
 }
-.app .app__users-list {
-	width: 50%;
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	justify-content: space-around;
-}
-@media screen and (max-width: 650px) {
-	.app .app__users-list {
-		flex-direction: column;
-		justify-content: flex-start;
-	}
-}
-@media screen and (max-width: 960px) {
-	.app .app__users-list {
-		width: 100%;
-	}
-}
