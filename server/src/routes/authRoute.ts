@@ -11,20 +11,31 @@ route.post('/login', async (req: Request, res: Response) => {
 	const { username, password, status = false } = req.body;
 	const userExist = await User.findOne({ username: username.toLowerCase() });
 	if (userExist) {
-		return res.status(400).send({
-			msg: 'User already exist',
+		await User.updateOne(
+			{ _id: userExist._id },
+			{
+				$set: {
+					status: true,
+				},
+			}
+		);
+		return res.status(200).send({
+			msg: 'User already exist, Welcome',
 			username: userExist.username,
 		});
 	}
 	const newUser = new User({
 		username: username.toLowerCase(),
 		password,
+		status: true,
 	});
 	try {
 		await newUser.save();
-		res
-			.status(200)
-			.send({ msg: 'User Created', username: newUser.username, status });
+		res.status(200).send({
+			msg: 'User Created, Welcome',
+			username: newUser.username,
+			status,
+		});
 	} catch (error) {
 		res.status(400).send({ error });
 	}
