@@ -1,11 +1,14 @@
 import { useEffect, useState } from 'react';
+import { Method } from '../constants/types/index';
 import request from '../helpers/api';
-
-type Method = 'GET' | 'POST' | 'PATCH' | 'DELETE';
 
 type fetchReturnType = [any | null, boolean, object | null];
 
-type UseFetch = (url: string, method: Method, data: any) => fetchReturnType;
+type UseFetch = (
+	url: string,
+	method: Method,
+	dataItems: any
+) => fetchReturnType;
 
 const useFetch: UseFetch = (url, method, dataItems) => {
 	const [data, setData] = useState<any | null>(null);

@@ -17,12 +17,19 @@ function Main() {
 
 	return (
 		<div className='main'>
-			{loading && <h1>loading...</h1>}
-			<div className='main__users-list'>
-				{data.users?.map((user: UsersProps) => (
-					<User username={user.username} status={user.status} key={user._id} />
-				))}
-			</div>
+			{loading ? (
+				<h1>loading...</h1>
+			) : (
+				<div className='main__users-list'>
+					{data.users.map((user: UsersProps) => (
+						<User
+							username={user.username}
+							status={user.status}
+							key={user._id}
+						/>
+					))}
+				</div>
+			)}
 		</div>
 	);
 }
