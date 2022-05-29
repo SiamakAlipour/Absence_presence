@@ -1,7 +1,9 @@
-const options = {
+module.exports = {
   extends: ['airbnb', 'airbnb-typescript'],
   parserOptions: {
     project: 'tsconfig.json',
+    tsconfigRootDir: __dirname,
+    sourceType: 'module',
   },
   parser: '@typescript-eslint/parser',
   rules: {
@@ -23,5 +25,3 @@ const options = {
     ],
   },
 };
-
-module.exports = options;
