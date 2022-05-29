@@ -2,7 +2,8 @@ import React from "react";
 import User from "./User";
 import "./Main.css";
 import useFetch from "../hooks/useFetch";
-import { GET } from "../constants";
+import { PATCH, GET } from "../constants";
+import request from "../helpers/api";
 
 type UsersProps = {
   _id: string;
@@ -14,6 +15,9 @@ function Main() {
   const [data, loading, error] = useFetch("/auth", GET, null);
 
   const handleReset = () => {
+    request("/auth/reset", PATCH, null)
+      .then((data) => console.log(data))
+      .catch((err) => console.log(error));
     window.location.reload();
   };
   if (error) return <h1>{`error`}</h1>;
