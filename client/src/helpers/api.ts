@@ -1,6 +1,6 @@
-import { Method } from "./../constants/types/index";
-import { API_URL, POST, GET, PATCH } from "./../constants/index";
-import axios from "axios";
+import { Method } from './../constants/types/index';
+import { API_URL, POST, GET, PATCH } from './../constants/index';
+import axios from 'axios';
 
 type Request = (url: string, method: Method, data: any) => Promise<unknown>;
 
