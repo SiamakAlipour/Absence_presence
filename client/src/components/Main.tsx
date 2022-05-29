@@ -1,37 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import api from '../helpers/api';
-import User from './User';
-import './Main.css';
-import useFetch from '../hooks/useFetch';
+import React from "react";
+import User from "./User";
+import "./Main.css";
+import useFetch from "../hooks/useFetch";
+import { GET } from "../constants";
 
 type UsersProps = {
-	_id?: string;
-	username: string;
-	status: boolean;
+  _id: string;
+  username: string;
+  status: boolean;
 };
 
 function Main() {
-	const [data, loading, error] = useFetch('/auth', 'GET', null);
+  const [data, loading, error] = useFetch("/auth", GET, null);
 
-	if (error) return <h1>{`error`}</h1>;
+  const handleReset = () => {
+    window.location.reload();
+  };
+  if (error) return <h1>{`error`}</h1>;
 
-	return (
-		<div className='main'>
-			{loading ? (
-				<h1>loading...</h1>
-			) : (
-				<div className='main__users-list'>
-					{data.users.map((user: UsersProps) => (
-						<User
-							username={user.username}
-							status={user.status}
-							key={user._id}
-						/>
-					))}
-				</div>
-			)}
-		</div>
-	);
+  return (
+    <div className="main">
+      <div className="main__users-options">
+        <div className="main__users-reset" onClick={handleReset}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+            />
+          </svg>
+        </div>
+      </div>
+      {loading ? (
+        <h1>loading...</h1>
+      ) : (
+        <div className="main__users-list">
+          {data.users.map((user: UsersProps) => (
+            <User
+              username={user.username}
+              status={user.status}
+              key={user._id}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 export default Main;
