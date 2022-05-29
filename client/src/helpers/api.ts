@@ -1,6 +1,6 @@
-import { Method } from './../constants/types/index';
-import { API_URL, POST, GET, PATCH } from './../constants/index';
 import axios from 'axios';
+import { Method } from '../constants/types/index';
+import { API_URL, POST, GET, PATCH } from '../constants/index';
 
 type Request = (url: string, method: Method, data: any) => Promise<unknown>;
 
@@ -21,7 +21,7 @@ const request: Request = (url, method, data) => {
           .catch((err) => reject(err));
       });
     case PATCH:
-      new Promise((resolve, reject) => {
+      return new Promise((resolve, reject) => {
         axios
           .patch(API_URL + url)
           .then((res) => resolve(res.data))

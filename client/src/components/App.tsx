@@ -4,13 +4,13 @@ import './App.css';
 import Router from '../Router';
 
 function App() {
-	return (
-		<BRouter>
-			<div className='app'>
-				<Router />
-			</div>
-		</BRouter>
-	);
+  return (
+    <BRouter>
+      <div className="app">
+        <Router />
+      </div>
+    </BRouter>
+  );
 }
 
 export default App;
