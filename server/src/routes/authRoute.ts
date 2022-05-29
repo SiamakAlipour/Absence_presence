@@ -40,5 +40,12 @@ route.post("/login", async (req: Request, res: Response) => {
     res.status(400).send({ error });
   }
 });
-
+route.patch("/reset", async (req: Request, res: Response) => {
+  try {
+    await User.updateMany({}, { $set: { status: false } });
+    res.status(200).send({ msg: "all users status reset" });
+  } catch (error) {
+    res.status(400).send({ error });
+  }
+});
 export default route;
