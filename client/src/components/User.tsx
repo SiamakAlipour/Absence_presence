@@ -1,5 +1,5 @@
 import React from "react";
-import { DELETE } from "../constants";
+import { DELETE, POST } from "../constants";
 import request from "../helpers/api";
 import "./User.css";
 
@@ -10,7 +10,7 @@ type UserProps = {
 
 function User({ username, status }: UserProps) {
   const handleDelete = async () => {
-    await request("/auth/delete", DELETE, { username })
+    await request("/auth/delete", POST, { username })
       .then((res: any) => alert(res.msg))
       .catch((err) => console.log(err));
     window.location.reload();

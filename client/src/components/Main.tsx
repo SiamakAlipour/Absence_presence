@@ -65,7 +65,7 @@ function Main() {
         <h1>loading...</h1>
       ) : (
         <div className="main__users-list">
-          {data.users.length === 0 ? (
+          {data.users.length === 1 ? (
             <h1>there is no list of users</h1>
           ) : (
             data.users.map((user: UsersProps) => {
