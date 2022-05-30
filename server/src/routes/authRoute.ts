@@ -13,7 +13,6 @@ route.post("/login", async (req: Request, res: Response) => {
 
   if (userExist) {
     if (userExist.password !== password) {
-      console.log(userExist.password);
       return res.status(400).send({ msg: "Invalid Password" });
     }
     await User.updateOne(
@@ -53,9 +52,8 @@ route.patch("/reset", async (req: Request, res: Response) => {
     res.status(400).send({ error });
   }
 });
-route.delete("/delete", async (req: Request, res: Response) => {
+route.post("/delete", async (req: Request, res: Response) => {
   const { username } = req.body;
-  console.log(username);
   try {
     await User.deleteOne({ username: username.toLowerCase() });
     res.status(200).send({ msg: "user deleted" });
