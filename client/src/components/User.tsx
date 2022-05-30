@@ -1,5 +1,7 @@
-import React from 'react';
-import './User.css';
+import React from "react";
+import { DELETE } from "../constants";
+import request from "../helpers/api";
+import "./User.css";
 
 type UserProps = {
   username: string;
@@ -7,6 +9,13 @@ type UserProps = {
 };
 
 function User({ username, status }: UserProps) {
+  const handleDelete = async () => {
+    await request("/auth/delete", DELETE, { username })
+      .then((res: any) => alert(res.msg))
+      .catch((err) => console.log(err));
+    window.location.reload();
+  };
+
   return (
     <div className="user">
       <div className="user__header">
@@ -20,7 +29,7 @@ function User({ username, status }: UserProps) {
         )}
       </div>
       <div className="user__footer">
-        <div className="user__option">
+        <div className="user__option" onClick={handleDelete}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-6 w-6"
