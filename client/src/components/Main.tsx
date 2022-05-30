@@ -1,9 +1,9 @@
-import React from 'react';
-import User from './User';
-import useFetch from '../hooks/useFetch';
-import { PATCH, GET } from '../constants';
-import request from '../helpers/api';
-import './Main.css';
+import React from "react";
+import User from "./User";
+import useFetch from "../hooks/useFetch";
+import { PATCH, GET, DELETE } from "../constants";
+import request from "../helpers/api";
+import "./Main.css";
 
 type UsersProps = {
   _id: string;
@@ -12,10 +12,10 @@ type UsersProps = {
 };
 
 function Main() {
-  const [data, loading, error] = useFetch('/auth', GET, null);
+  const [data, loading, error] = useFetch("/auth", GET, null);
 
   const handleReset = () => {
-    request('/auth/reset', PATCH, null)
+    request("/auth/reset", PATCH, null)
       .then((res) => console.log(res))
       .catch((err) => console.log(err));
     window.location.reload();
@@ -65,18 +65,22 @@ function Main() {
         <h1>loading...</h1>
       ) : (
         <div className="main__users-list">
-          {data.users.map((user: UsersProps) => {
-            if (user.username === 'admin') return;
-            // eslint-disable-next-line consistent-return
-            return (
-              <User
-                username={user.username}
-                status={user.status}
-                // eslint-disable-next-line no-underscore-dangle
-                key={user._id}
-              />
-            );
-          })}
+          {data.users.length === 0 ? (
+            <h1>there is no list of users</h1>
+          ) : (
+            data.users.map((user: UsersProps) => {
+              if (user.username === "admin") return;
+              // eslint-disable-next-line consistent-return
+              return (
+                <User
+                  username={user.username}
+                  status={user.status}
+                  // eslint-disable-next-line no-underscore-dangle
+                  key={user._id}
+                />
+              );
+            })
+          )}
         </div>
       )}
     </div>

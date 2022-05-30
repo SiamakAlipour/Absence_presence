@@ -1,42 +1,49 @@
 .main {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
-	justify-content: space-around;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
 }
 .main .main__users-list {
-	width: 60%;
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	justify-content: space-around;
+  width: 60%;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 .main .main__users-options {
-	width: 150px;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
+  width: 100%;
+  background-color: #eeeeee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 20px;
 }
 .main .main__users-options .main__users-reset {
-	width: 30px;
-	height: 30px;
-	cursor: pointer;
-	transition: 200ms;
-	color: gray;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: 200ms;
+  color: gray;
+  margin: 10px;
 }
 .main .main__users-options .main__users-reset:hover {
-	transform: scale(1.1);
-	color: black;
+  transform: scale(1.1);
+  color: black;
 }
 @media screen and (max-width: 650px) {
-	.main .main__users-list {
-		flex-direction: column;
-		justify-content: flex-start;
-	}
+  .main .main__users-list {
+    flex-direction: column;
+    justify-content: flex-start;
+  }
 }
 @media screen and (max-width: 960px) {
-	.main .main__users-list {
-		width: 100%;
-	}
+  .main .main__users-list {
+    width: 100%;
+  }
+  .main .main__users-options {
+    justify-content: space-around;
+  }
 }
